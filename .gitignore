@@ -3,6 +3,8 @@
 **/*.war
 **/*.sh
 !deploy/docker-4.2.0/files/*.sh
+!**/src/**/*.sh
+!cmdbuild/utils/export_git_issues.sh
 
 # Maven flattened POMs
 **/.flattened-pom.xml
