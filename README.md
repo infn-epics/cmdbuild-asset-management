@@ -36,7 +36,21 @@ This repository contains the source code of the CMDBuild Suite.
 
 ## Quick Start
 
-The fastest way to get CMDBuild running is to use the graphical setup wizard bundled in the WAR file:
+### Option 1: Docker Compose (recommended for evaluation)
+
+```bash
+# 1. Build the WAR
+mvn clean install -DskipTests
+
+# 2. Start the stack
+cd deploy/docker-4.2.0
+docker compose up -d
+
+# 3. Open http://localhost:8090/cmdbuild/
+# Default login: admin / admin
+```
+
+### Option 2: Setup wizard
 
 ```bash
 # 1. Make sure you have Java 17 and PostgreSQL 17 installed
@@ -127,6 +141,10 @@ See the dedicated [INSTALL.md](INSTALL.md) guide for:
 * Configuring `database.conf`
 * Running the initial setup wizard
 * First login and post-installation steps
+
+### Releases
+
+Every tag pushed as `v*` triggers a GitHub Actions workflow (`.github/workflows/release.yml`) that compiles the project and publishes the WAR file as a GitHub Release artifact.
 
 ---
 

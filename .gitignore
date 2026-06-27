@@ -1,0 +1,29 @@
+# Build outputs
+**/target/
+**/*.war
+**/*.sh
+!deploy/docker-4.2.0/files/*.sh
+
+# Maven flattened POMs
+**/.flattened-pom.xml
+
+# Sensitive / local config
+cloud-config.txt
+*.kubeconfig
+
+# IDE
+nb-configuration.xml
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+/tmp/
+*.tmp

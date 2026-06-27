@@ -210,29 +210,81 @@ For CMDBuild READY2USE use `ready2use.sh` / `ready2use.war`, and for openMAINT u
 
 ## Docker Deployment
 
-A Docker Compose example is provided under the `deploy/` directory.
+A ready-to-use Docker Compose stack is provided under `deploy/docker-4.2.0/`. It builds the CMDBuild WAR from source, starts a PostGIS database and deploys the application on Tomcat.
 
-### 1. Navigate to the Docker deployment folder
+### 1. Build the WAR
+
+The Docker image is built from the project root, so the WAR must exist before starting the stack:
+
+```bash
+mvn clean install -DskipTests
+```
+
+### 2. Start the stack
 
 ```bash
 cd deploy/docker-4.2.0
-```
-
-### 2. Configure environment variables
-
-Edit the provided `.env` or configuration files to set the database password, ports and volumes.
-
-### 3. Start the services
-
-```bash
 docker compose up -d
 ```
 
-This will start PostgreSQL and CMDBuild containers. Access the application at:
+This will:
+* Build a Docker image named `cmdbuild:4.2.0` using the WAR from `cmdbuild/target/`.
+* Start a PostGIS 17 container named `cmdbuild_db`.
+* Initialize the `cmdbuild` database with the uncompressed `database/demo.dump`.
+* Start the CMDBuild application on Tomcat.
+
+### 3. Access the application
 
 ```
-http://localhost:8080/cmdbuild/
+http://localhost:8090/cmdbuild/
 ```
+
+> **Note:** The compose file exposes PostgreSQL on port `5432` and CMDBuild on port `8090`. Change the port mappings if those ports are already in use.
+
+### 4. Select a different dump
+
+To start with an empty database instead of the demo data, change the `CMDBUILD_DUMP` environment variable in `docker-compose.yml`:
+
+```yaml
+environment:
+  - CMDBUILD_DUMP=empty.dump
+```
+
+Both `demo.dump` and `empty.dump` are copied into the image from the `database/` folder.
+
+### 5. Stop and clean up
+
+```bash
+docker compose down
+```
+
+To remove the volumes (database and Tomcat data):
+
+```bash
+docker compose down -v
+```
+
+---
+
+## GitHub Actions Release Pipeline
+
+The repository includes a GitHub Actions workflow (`.github/workflows/release.yml`) that is triggered every time a tag matching `v*` is pushed.
+
+The workflow:
+1. Checks out the repository.
+2. Sets up Java 17.
+3. Builds the project with Maven.
+4. Uploads the generated WAR as a workflow artifact.
+5. Creates a GitHub Release and attaches the WAR file.
+
+To create a new release:
+
+```bash
+git tag v4.2.1
+git push origin v4.2.1
+```
+
+After the workflow completes, the WAR will be available on the GitHub Releases page.
 
 ---
 
