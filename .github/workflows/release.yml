@@ -33,7 +33,7 @@ jobs:
         run: sencha which
 
       - name: Build CMDBuild WAR
-        run: mvn -B clean install -DskipTests
+        run: mvn -B clean install -Dmaven.test.skip=true
 
       - name: Upload WAR artifact
         uses: actions/upload-artifact@v4
