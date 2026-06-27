@@ -20,6 +20,18 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
+      - name: Install Sencha Cmd
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby unzip
+          curl -fsSL -o /tmp/sencha-cmd.zip "https://cdn.sencha.com/cmd/7.6.0.87/no-jre/SenchaCmd-7.6.0.87-linux-amd64.sh.zip"
+          unzip -q /tmp/sencha-cmd.zip -d /tmp/sencha-cmd
+          /tmp/sencha-cmd/SenchaCmd-7.6.0.87-linux-amd64.sh -q
+          echo "$HOME/bin/Sencha/Cmd/7.6.0.87" >> "$GITHUB_PATH"
+
+      - name: Verify Sencha Cmd
+        run: sencha which
+
       - name: Build CMDBuild WAR
         run: mvn -B clean install -DskipTests
 
