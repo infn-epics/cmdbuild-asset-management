@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       INSTALL4J_JAVA_HOME_OVERRIDE: /usr/lib/jvm/java-8-openjdk-amd64
+      OPENSSL_CONF: /dev/null
 
     steps:
       - name: Checkout repository
