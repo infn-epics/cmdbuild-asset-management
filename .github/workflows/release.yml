@@ -44,7 +44,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cmdbuild-war
-          path: cmdbuild/target/cmdbuild-*.war
+          path: |
+            cmdbuild/target/cmdbuild.war
+            cmdbuild/target/cmdbuild.sh
           retention-days: 30
 
       - name: Get version from tag
@@ -55,7 +57,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: CMDBuild ${{ steps.get_version.outputs.VERSION }}
-          files: cmdbuild/target/cmdbuild-*.war
+          files: |
+            cmdbuild/target/cmdbuild.war
+            cmdbuild/target/cmdbuild.sh
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
