@@ -1,0 +1,14 @@
+
+.cmdbuildicon-flow-line:before { content: '\e800'; } /* '' */
+.cmdbuildicon-default-bim:before { content: '\e801'; } /* '' */
+.cmdbuildicon-filter-remove:before { content: '\e802'; } /* '' */
+.cmdbuildicon-list-alt-remove:before { content: '\e803'; } /* '' */
+.cmdbuildicon-stopwatch:before { content: '\e808'; } /* '' */
+.cmdbuildicon-list:before { content: '\e80a'; } /* '' */
+.cmdbuildicon-gis-showinfo:before { content: '\e80e'; } /* '' */
+.cmdbuildicon-gis-hideinfo:before { content: '\e80f'; } /* '' */
+.cmdbuildicon-processparent:before { content: '\e811'; } /* '' */
+.cmdbuildicon-classparent:before { content: '\e812'; } /* '' */
+.cmdbuildicon-planimetry:before { content: '\e813'; } /* '' */
+.cmdbuildicon-envelope-sent-o:before { content: '\e814'; } /* '' */
+.cmdbuildicon-relgraph:before { content: '\f527'; } /* '' */

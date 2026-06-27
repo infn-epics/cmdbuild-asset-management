@@ -27,3 +27,7 @@ Thumbs.db
 # Temporary files
 /tmp/
 *.tmp
+
+# Sencha / ExtJS downloaded SDK (rebuilt during Maven)
+ui/ext/
+ui/downloadedFile.zip
